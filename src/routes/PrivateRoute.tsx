@@ -1,19 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { Route, RouteProps } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, RouteProps, Redirect } from 'react-router-dom';
+import LoggedIn from 'components/LoggedIn';
 
-interface IProps {
+interface IProps extends RouteProps {
   component: React.FC;
-  rest: Record<string, any>;
+  token: string;
 }
+
 const PrivateRoute: React.FC<IProps> = ({
   component: Component,
+  token,
   ...rest
 }: IProps) => {
-  return (
-    <Route {...rest} render={(props: RouteProps) => <Component {...props} />} />
+  return token ? (
+    <Route
+      {...rest}
+      render={(props: RouteProps) => (
+        <LoggedIn>
+          <Component {...props} />
+        </LoggedIn>
+      )}
+    />
+  ) : (
+    <Redirect to="/" />
   );
 };
 
-export default PrivateRoute;
+const mapStateToProps = ({ authentication: { token } }) => ({ token });
+
+export default connect(mapStateToProps)(PrivateRoute);

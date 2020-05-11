@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
-import { authenticationRequest } from 'modules/authentication/actions';
+import { signUpRequest } from 'modules/signup/actions';
 import EntryPage from 'components/EntryPage';
 import Input from 'components/Input';
 import Button from 'components/Button';
@@ -12,30 +12,40 @@ import { Title, Or } from './styles';
 interface ISchema {
   email: string;
   password: string;
+  name: string;
 }
 
 interface IProps {
-  authenticationRequest: (payload: ISchema) => void;
+  signUpRequest: (payload: ISchema) => void;
 }
 
 const initialValues = {
   email: '',
   password: '',
+  name: '',
 };
 
-const Login: React.FC<IProps> = ({ authenticationRequest }) => {
+const SignUp: React.FC<IProps> = ({ signUpRequest }) => {
   return (
     <EntryPage>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={authenticationRequest}
+        onSubmit={signUpRequest}
         validateOnBlur={false}
         validateOnChange={false}
       >
         {({ values, errors, handleChange, handleSubmit }) => (
           <>
-            <Title>Welcome</Title>
+            <Title>Create Account</Title>
+            <Input
+              placeholder="Name"
+              label="Name"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              error={errors.name}
+            />
             <Input
               placeholder="email@email.com"
               label="Email"
@@ -54,12 +64,12 @@ const Login: React.FC<IProps> = ({ authenticationRequest }) => {
               error={errors.password}
             />
             <Button type="submit" onClick={() => handleSubmit()}>
-              Log in
+              Sign Up
             </Button>
             <Or>
               <span>Or</span>
             </Or>
-            <Button onClick={() => history.push('/signup')}>Sign Up</Button>
+            <Button onClick={() => history.push('/')}>Log in</Button>
           </>
         )}
       </Formik>
@@ -67,4 +77,4 @@ const Login: React.FC<IProps> = ({ authenticationRequest }) => {
   );
 };
 
-export default connect(null, { authenticationRequest })(Login);
+export default connect(null, { signUpRequest })(SignUp);

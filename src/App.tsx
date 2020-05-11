@@ -4,7 +4,7 @@ import GlobalStyle from 'theme/global';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-
+import { ToastContainer } from 'react-toastify';
 import store from 'store';
 import { history } from 'services';
 import i18n from './i18n';
@@ -17,6 +17,7 @@ const App: React.FC = () => {
           <Router history={history}>
             <GlobalStyle />
             <Routes />
+            <ToastContainer />
           </Router>
         </I18nextProvider>
       </Provider>

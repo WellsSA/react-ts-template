@@ -4,26 +4,19 @@ import { IInitialState } from './types';
 
 const initialState: IInitialState = {
   isLoading: false,
-  user: null,
-  token: null,
 };
 
 export default handleActions(
   {
-    [Constants.AUTHENTICATION_REQUEST]: state => ({
+    [Constants.SIGNUP_REQUEST]: state => ({
       ...state,
       isLoading: true,
     }),
-    [Constants.AUTHENTICATION_SUCCESS]: (
-      state: IInitialState,
-      { payload },
-    ) => ({
+    [Constants.SIGNUP_SUCCESS]: state => ({
       ...state,
       isLoading: false,
-      user: payload.user,
-      token: payload.token,
     }),
-    [Constants.AUTHENTICATION_ERROR]: state => ({
+    [Constants.SIGNUP_ERROR]: state => ({
       ...state,
       isLoading: false,
     }),
