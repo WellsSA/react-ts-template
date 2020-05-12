@@ -4,6 +4,8 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import reducers from 'modules/reducers';
 import sagas from 'modules/sagas';
 
@@ -19,6 +21,11 @@ function configureStore() {
 
     middlewares.push(logger);
   }
+  const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['authentication'],
+  };
   const rootReducer = (state, action) => {
     if (action.type === 'AUTHENTICATION_LOGOUT_REQUEST') {
       state = undefined;
@@ -27,13 +34,15 @@ function configureStore() {
     return reducers(state, action);
   };
   const enhancer = compose(applyMiddleware(...middlewares));
-  const store = createStore(rootReducer, enhancer);
+  const persistedReducer = persistReducer(persistConfig, rootReducer);
+  const store = createStore(persistedReducer, enhancer);
+  const persistor = persistStore(store);
 
-  return store;
+  return { store, persistor };
 }
 
-const store = configureStore();
+const { store, persistor } = configureStore();
 
 sagaMiddleware.run(sagas);
 
-export default store;
+export { store, persistor };

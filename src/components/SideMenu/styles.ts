@@ -3,7 +3,7 @@ import palette from 'theme/palette';
 import { Link } from 'react-router-dom';
 
 interface IListItem {
-  active: boolean;
+  active: string;
   to: string;
 }
 

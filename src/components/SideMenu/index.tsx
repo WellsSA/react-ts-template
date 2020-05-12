@@ -43,7 +43,7 @@ const SideMenu: React.FC<IProps> = ({ title, authenticationLogoutRequest }) => {
       <Title>{title}</Title>
       <List>
         {menuItems.map(({ label, icon, to }) => (
-          <ListItem key={to} active={path === to} to={to}>
+          <ListItem key={to} active={path === to ? 'true' : ''} to={to}>
             {icon}
             <span>{label}</span>
           </ListItem>

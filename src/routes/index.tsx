@@ -7,6 +7,7 @@ const SignUp = lazy(() => import('pages/SignUp'));
 const Dashboard = lazy(() => import('pages/Dashboard'));
 const Exam = lazy(() => import('pages/Exam'));
 const Profile = lazy(() => import('pages/Profile'));
+const ExamDetail = lazy(() => import('pages/ExamDetail'));
 
 const Routes: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Routes: React.FC = () => {
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/exam" component={Exam} />
+        <PrivateRoute path="/exam/:id" component={ExamDetail} />
       </Suspense>
     </Switch>
   );
