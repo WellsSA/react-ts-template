@@ -2,20 +2,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, RouteProps, Redirect } from 'react-router-dom';
+import { Route, RouteProps } from 'react-router-dom';
 import LoggedIn from 'components/LoggedIn';
 
 interface IProps extends RouteProps {
   component: React.FC;
-  token: string;
+  token?: string;
 }
 
 const PrivateRoute: React.FC<IProps> = ({
   component: Component,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   token,
   ...rest
 }: IProps) => {
-  return token ? (
+  // token ? (
+  return (
     <Route
       {...rest}
       render={(props: RouteProps) => (
@@ -24,9 +26,10 @@ const PrivateRoute: React.FC<IProps> = ({
         </LoggedIn>
       )}
     />
-  ) : (
-    <Redirect to="/" />
   );
+  // ) : (
+  //   <Redirect to="/" />
+  // );
 };
 
 const mapStateToProps = ({ authentication: { token } }) => ({ token });

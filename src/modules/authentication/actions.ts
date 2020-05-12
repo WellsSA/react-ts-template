@@ -8,3 +8,7 @@ export const authenticationSuccess = createAction(
   Constants.AUTHENTICATION_SUCCESS,
 );
 export const authenticationError = createAction(Constants.AUTHENTICATION_ERROR);
+
+export const authenticationLogoutRequest = createAction(
+  Constants.AUTHENTICATION_LOGOUT_REQUEST,
+);

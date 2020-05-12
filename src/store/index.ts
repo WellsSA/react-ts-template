@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable no-param-reassign */
 /* eslint-disable global-require */
 /* eslint-disable no-underscore-dangle */
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -17,8 +19,15 @@ function configureStore() {
 
     middlewares.push(logger);
   }
+  const rootReducer = (state, action) => {
+    if (action.type === 'AUTHENTICATION_LOGOUT_REQUEST') {
+      state = undefined;
+    }
+    // @ts-ignore
+    return reducers(state, action);
+  };
   const enhancer = compose(applyMiddleware(...middlewares));
-  const store = createStore(reducers, enhancer);
+  const store = createStore(rootReducer, enhancer);
 
   return store;
 }
