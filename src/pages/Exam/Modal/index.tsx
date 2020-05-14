@@ -6,7 +6,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import { examHandleModal, examCreateRequest } from 'modules/exam/actions';
 import validationSchema from './validationSchema';
-import { Container, ButtonsContainer } from './styles';
+import { Container, ButtonsContainer, Loading } from './styles';
 
 interface ISchema {
   name: string;
@@ -16,6 +16,7 @@ interface IProps {
   modalOpen: boolean;
   examHandleModal: (data: { modalOpen: boolean }) => void;
   examCreateRequest: (data: ISchema) => void;
+  isLoadingCreate: boolean;
 }
 
 const initialValues = {
@@ -24,6 +25,7 @@ const initialValues = {
 
 const ModalExam: React.FC<IProps> = ({
   modalOpen,
+  isLoadingCreate,
   examHandleModal,
   examCreateRequest,
 }) => {
@@ -51,7 +53,9 @@ const ModalExam: React.FC<IProps> = ({
               <Button onClick={() => examHandleModal({ modalOpen: false })}>
                 Voltar
               </Button>
-              <Button onClick={() => handleSubmit()}>Salvar</Button>
+              <Button onClick={() => handleSubmit()}>
+                {isLoadingCreate ? <Loading type="spin" /> : 'Salvar'}
+              </Button>
             </ButtonsContainer>
           </Container>
         )}
@@ -60,7 +64,10 @@ const ModalExam: React.FC<IProps> = ({
   );
 };
 
-const mapStateToProps = ({ exam: { modalOpen } }) => ({ modalOpen });
+const mapStateToProps = ({ exam: { modalOpen, isLoadingCreate } }) => ({
+  modalOpen,
+  isLoadingCreate,
+});
 
 export default connect(mapStateToProps, { examHandleModal, examCreateRequest })(
   ModalExam,

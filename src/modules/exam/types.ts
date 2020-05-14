@@ -13,6 +13,7 @@ export interface IExam {
 
 export interface IInitialState {
   isLoading: boolean;
+  isLoadingCreate: boolean;
   rows: IExam[];
   selected: string | null;
   modalOpen: boolean;

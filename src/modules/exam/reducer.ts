@@ -4,6 +4,9 @@ import { IInitialState } from './types';
 
 const initialState: IInitialState = {
   isLoading: false,
+  isLoadingCreate: false,
+  selected: null,
+  modalOpen: false,
   rows: [
     {
       created_at: new Date().getTime(),
@@ -25,8 +28,6 @@ const initialState: IInitialState = {
       expire_at: new Date().getTime(),
     },
   ],
-  selected: null,
-  modalOpen: false,
 };
 
 export default handleActions(
@@ -43,6 +44,18 @@ export default handleActions(
     [Constants.EXAM_GET_ALL_ERROR]: state => ({
       ...state,
       isLoading: false,
+    }),
+    [Constants.EXAM_CREATE_REQUEST]: state => ({
+      ...state,
+      isLoadingCreate: true,
+    }),
+    [Constants.EXAM_CREATE_SUCCESS]: state => ({
+      ...state,
+      isLoadingCreate: false,
+    }),
+    [Constants.EXAM_CREATE_ERROR]: state => ({
+      ...state,
+      isLoadingCreate: false,
     }),
     [Constants.EXAM_HANDLE_MODAL]: (state, { payload }) => ({
       ...state,
