@@ -6,6 +6,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import validationSchema from './validationSchema';
 import { Container, ButtonContainer } from './styles';
+import Header from './Header';
 
 interface ISchema {
   email: string;
@@ -33,6 +34,7 @@ const Profile: React.FC<IProps> = ({
     >
       {({ values, errors, handleChange, handleSubmit }) => (
         <>
+          <Header />
           <Container>
             <Input
               placeholder="*********"

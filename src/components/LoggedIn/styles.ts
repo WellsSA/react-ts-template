@@ -20,6 +20,5 @@ export const RightSideContainer = styled.div`
 `;
 
 export const ChildrenContainer = styled.div`
-  height: 100%;
   padding: 2rem 0 0;
 `;
