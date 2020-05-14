@@ -26,6 +26,7 @@ const initialState: IInitialState = {
     },
   ],
   selected: null,
+  modalOpen: false,
 };
 
 export default handleActions(
@@ -42,6 +43,10 @@ export default handleActions(
     [Constants.EXAM_GET_ALL_ERROR]: state => ({
       ...state,
       isLoading: false,
+    }),
+    [Constants.EXAM_HANDLE_MODAL]: (state, { payload }) => ({
+      ...state,
+      modalOpen: payload.modalOpen,
     }),
   },
   initialState,

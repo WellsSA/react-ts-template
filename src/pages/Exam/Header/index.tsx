@@ -1,8 +1,14 @@
 import React from 'react';
 import Button from 'components/Button';
+import { connect } from 'react-redux';
+import { examHandleModal } from 'modules/exam/actions';
 import { Container, DescriptionContainer, ButtonContainer } from './styles';
 
-const Header: React.FC = () => {
+interface IProps {
+  examHandleModal: (data: { modalOpen: boolean }) => void;
+}
+
+const Header: React.FC<IProps> = ({ examHandleModal }) => {
   return (
     <Container>
       <DescriptionContainer>
@@ -10,10 +16,12 @@ const Header: React.FC = () => {
         <p>See a list of exam already created</p>
       </DescriptionContainer>
       <ButtonContainer>
-        <Button>Create an exam</Button>
+        <Button onClick={() => examHandleModal({ modalOpen: true })}>
+          Create an exam
+        </Button>
       </ButtonContainer>
     </Container>
   );
 };
 
-export default Header;
+export default connect(null, { examHandleModal })(Header);

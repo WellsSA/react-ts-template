@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IExam } from 'modules/exam/types';
+import Modal from './Modal';
 import Header from './Header';
 import Table from './Table';
 import { Container } from './styles';
@@ -20,10 +21,13 @@ const Exam: React.FC<IProps> = ({ rows }) => {
           <span>Create your first exam</span>
         </Container>
       )}
+      <Modal />
     </>
   );
 };
 
-const mapStateToProps = ({ exam: { rows } }) => ({ rows });
+const mapStateToProps = ({ exam: { rows } }) => ({
+  rows,
+});
 
 export default connect(mapStateToProps)(Exam);

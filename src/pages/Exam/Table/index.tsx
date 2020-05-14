@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { IExam } from 'modules/exam/types';
 import Button from 'components/Button';
 import { format } from 'date-fns';
@@ -24,13 +25,15 @@ const Table: React.FC<IProps> = ({ rows }) => {
         <tbody>
           {rows.map(
             ({ created_at, expire_at, id, name, questions, updated_at }) => (
-              <tr key={id}>
-                <td>{name}</td>
-                <td>{questions.length}</td>
-                <td>{format(expire_at, 'dd/MM/yyyy')}</td>
-                <td>{format(created_at, 'dd/MM/yyyy')}</td>
-                <td>{format(updated_at, 'dd/MM/yyyy')}</td>
-              </tr>
+              <Link key={id} to={`exam/${id}`}>
+                <tr>
+                  <td>{name}</td>
+                  <td>{questions.length}</td>
+                  <td>{format(expire_at, 'dd/MM/yyyy')}</td>
+                  <td>{format(created_at, 'dd/MM/yyyy')}</td>
+                  <td>{format(updated_at, 'dd/MM/yyyy')}</td>
+                </tr>
+              </Link>
             ),
           )}
         </tbody>

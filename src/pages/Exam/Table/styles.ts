@@ -11,6 +11,10 @@ export const Container = styled.div`
 
 export const Table = styled.table`
   width: 100%;
+  a {
+    text-decoration: none;
+    color: #000;
+  }
 
   thead {
     font-weight: 600;

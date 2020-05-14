@@ -15,4 +15,5 @@ export interface IInitialState {
   isLoading: boolean;
   rows: IExam[];
   selected: string | null;
+  modalOpen: boolean;
 }
