@@ -45,9 +45,9 @@ npm install
 Start project
 
 ```bash
-yarn dev
+yarn start
 # or
-npm run dev
+npm start
 ```
 
 ## Demo :clipboard:
