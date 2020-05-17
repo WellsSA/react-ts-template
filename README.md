@@ -1,6 +1,6 @@
 # Title
 
-> Description
+> An exam applier to help teachers :rocket:
 
 ## Summary :memo:
 
@@ -14,7 +14,7 @@
 
 ## Motivation :gift_heart:
 
-TODO
+I create this project to my university the goal is to help teachers create exams and apply them.
 
 ## Getting Started :computer:
 
@@ -22,7 +22,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-TODO
+You need to have NodeJS already installed.
 
 ### Installing
 
@@ -31,7 +31,7 @@ A step by step series of examples that tell you how to get a development env run
 Cloning project
 
 ```bash
-git clone https://github.com/thierrysantos/gobarber-api.git
+git clone https://github.com/thierrysantos/exam-applier-frontend.git
 ```
 
 Installing project depencies
