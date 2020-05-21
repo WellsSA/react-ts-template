@@ -11,3 +11,6 @@ export const examCreateSuccess = createAction(Constants.EXAM_CREATE_SUCCESS);
 export const examCreateError = createAction(Constants.EXAM_CREATE_ERROR);
 
 export const examHandleModal = createAction(Constants.EXAM_HANDLE_MODAL);
+export const examHandleNextPrevious = createAction(
+  Constants.EXAM_HANDLE_NEXT_PREVIOUS,
+);

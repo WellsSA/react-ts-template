@@ -3,12 +3,12 @@ export interface IQuestion {
 }
 
 export interface IExam {
-  name: string;
+  title: string;
   id: string;
-  created_at: number;
-  updated_at: number;
-  expire_at: number;
-  questions: IQuestion[];
+  form_id: string;
+  user_id: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IInitialState {
@@ -17,4 +17,7 @@ export interface IInitialState {
   rows: IExam[];
   selected: string | null;
   modalOpen: boolean;
+  page: number;
+  total_items: number;
+  page_count: number;
 }

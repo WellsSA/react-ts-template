@@ -6,6 +6,7 @@ interface IProps {
   children: React.ReactNode;
   variant?: 'outlined' | 'contained';
   type?: 'button' | 'submit';
+  disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 const Button: React.FC<IProps> = ({
@@ -13,9 +14,15 @@ const Button: React.FC<IProps> = ({
   type = 'button',
   variant = 'contained',
   onClick,
+  disabled,
 }) => {
   return (
-    <ButtonStyled variant={variant} type={type} onClick={onClick}>
+    <ButtonStyled
+      variant={variant}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </ButtonStyled>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { handleActions } from 'redux-actions';
 import Constants from './constants';
 import { IInitialState } from './types';
@@ -7,27 +8,10 @@ const initialState: IInitialState = {
   isLoadingCreate: false,
   selected: null,
   modalOpen: false,
-  rows: [
-    {
-      created_at: new Date().getTime(),
-      updated_at: new Date().getTime(),
-      name: 'CCPBUA-3AN',
-      id: 'randomid0',
-      questions: [],
-      expire_at: new Date().getTime(),
-    },
-    {
-      created_at: new Date().getTime(),
-      updated_at: new Date().getTime(),
-      name: 'CCPBUA-1AN',
-      id: 'randomid1',
-      questions: [
-        { title: 'Quem foi Turing?' },
-        { title: 'O que é um HashTable?' },
-      ],
-      expire_at: new Date().getTime(),
-    },
-  ],
+  rows: [],
+  page: 1,
+  total_items: 0,
+  page_count: 0,
 };
 
 export default handleActions(
@@ -40,6 +24,8 @@ export default handleActions(
       ...state,
       isLoading: false,
       rows: payload.rows,
+      total_items: payload.total_items,
+      page_count: payload.page_count,
     }),
     [Constants.EXAM_GET_ALL_ERROR]: state => ({
       ...state,
@@ -61,6 +47,21 @@ export default handleActions(
       ...state,
       modalOpen: payload.modalOpen,
     }),
+    [Constants.EXAM_HANDLE_NEXT_PREVIOUS]: (
+      state: IInitialState,
+      { payload },
+    ) => {
+      const nextPage = state.page + payload.page;
+      return {
+        ...state,
+        page:
+          nextPage < 0
+            ? 1
+            : nextPage >= state.page_count
+            ? state.page_count
+            : nextPage,
+      };
+    },
   },
   initialState,
 );

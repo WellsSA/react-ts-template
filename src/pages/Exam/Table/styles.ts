@@ -25,7 +25,7 @@ export const Table = styled.table`
 
   tr {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     background: ${palette.white};
     margin: 1rem 0;
     padding: 1rem 0;

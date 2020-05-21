@@ -3,6 +3,7 @@ import palette from 'theme/palette';
 
 interface IButton {
   variant: 'outlined' | 'contained';
+  disabled?: boolean;
 }
 export const Button = styled.button<IButton>`
   width: 100%;
@@ -18,6 +19,15 @@ export const Button = styled.button<IButton>`
     props.variant === 'outlined' ? palette.purpleDark : palette.white};
 
   font-weight: 600;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 
   &:hover {
     opacity: 0.8;
