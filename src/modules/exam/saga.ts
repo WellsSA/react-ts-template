@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { all, put, takeLatest, delay } from 'redux-saga/effects';
-import { api } from 'services';
+import { retryApi } from 'services';
 import { toast } from 'react-toastify';
 import {
   examGetAllRequest,
@@ -16,12 +16,16 @@ import {
 
 export function* examGetAllRequestSaga() {
   try {
-    const response = yield api.get('/exams', {
-      params: {
-        page: 1,
-        page_size: 1,
+    const response = yield retryApi(
+      '/exams',
+      {
+        params: {
+          page: 1,
+          page_size: 1,
+        },
       },
-    });
+      2,
+    );
     yield delay(1500);
     return yield put(
       examGetAllSuccess({
@@ -40,7 +44,7 @@ export function* examGetAllRequestSaga() {
 
 export function* examGetOneRequestSaga({ payload }) {
   try {
-    const response = yield api.get(`/exams/${payload}`);
+    const response = yield retryApi(`/exams/${payload}`, {}, 2);
     return yield put(examGetOneSuccess({ selected: response.data }));
   } catch (responseWithError) {
     yield put(examGetOneError());
@@ -52,7 +56,7 @@ export function* examGetOneRequestSaga({ payload }) {
 
 export function* examGetResponseRequestSaga({ payload }) {
   try {
-    const response = yield api.get(`/exams/${payload}/responses`);
+    const response = yield retryApi(`/exams/${payload}/responses`, {}, 2);
     yield delay(1500);
     return yield put(
       examGetResponseSuccess({

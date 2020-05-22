@@ -1,4 +1,4 @@
-import api from './api';
+import api, { retryApi } from './api';
 import history from './history';
 
-export { api, history };
+export { api, history, retryApi };
