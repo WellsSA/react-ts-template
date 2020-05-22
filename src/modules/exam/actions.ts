@@ -14,6 +14,16 @@ export const examCreateRequest = createAction(Constants.EXAM_CREATE_REQUEST);
 export const examCreateSuccess = createAction(Constants.EXAM_CREATE_SUCCESS);
 export const examCreateError = createAction(Constants.EXAM_CREATE_ERROR);
 
+export const examGetResponseRequest = createAction(
+  Constants.EXAM_GET_RESPONSES_REQUEST,
+);
+export const examGetResponseSuccess = createAction(
+  Constants.EXAM_GET_RESPONSES_SUCCESS,
+);
+export const examGetResponseError = createAction(
+  Constants.EXAM_GET_RESPONSES_ERROR,
+);
+
 export const examHandleModal = createAction(Constants.EXAM_HANDLE_MODAL);
 export const examHandleNextPrevious = createAction(
   Constants.EXAM_HANDLE_NEXT_PREVIOUS,

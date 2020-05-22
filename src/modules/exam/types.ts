@@ -1,5 +1,6 @@
-export interface IQuestion {
+export interface IAnswer {
   title: string;
+  text: string;
 }
 
 export interface IExam {
@@ -30,7 +31,9 @@ export interface IExamSelected {
 export interface IInitialState {
   isLoading: boolean;
   isLoadingCreate: boolean;
+  isLoadingResponse: boolean;
   rows: IExam[];
+  answers: IAnswer[][];
   selected: IExamSelected | null;
   modalOpen: boolean;
   page: number;

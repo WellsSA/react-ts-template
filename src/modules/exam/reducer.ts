@@ -4,14 +4,16 @@ import Constants from './constants';
 import { IInitialState } from './types';
 
 const initialState: IInitialState = {
-  isLoading: false,
-  isLoadingCreate: false,
   selected: null,
-  modalOpen: false,
   rows: [],
+  answers: [],
   page: 1,
   total_items: 0,
   page_count: 0,
+  isLoading: false,
+  isLoadingCreate: false,
+  isLoadingResponse: false,
+  modalOpen: false,
 };
 
 export default handleActions(
@@ -44,6 +46,20 @@ export default handleActions(
     [Constants.EXAM_GET_ONE_ERROR]: state => ({
       ...state,
       isLoading: false,
+    }),
+    [Constants.EXAM_GET_RESPONSES_REQUEST]: state => ({
+      ...state,
+      isLoadingResponse: true,
+      answers: [],
+    }),
+    [Constants.EXAM_GET_RESPONSES_SUCCESS]: (state, { payload }) => ({
+      ...state,
+      isLoadingResponse: false,
+      answers: payload.answers,
+    }),
+    [Constants.EXAM_GET_RESPONSES_ERROR]: state => ({
+      ...state,
+      isLoadingResponse: false,
     }),
     [Constants.EXAM_CREATE_REQUEST]: state => ({
       ...state,

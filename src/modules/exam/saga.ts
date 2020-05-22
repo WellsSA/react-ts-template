@@ -9,6 +9,9 @@ import {
   examGetOneRequest,
   examGetOneError,
   examGetOneSuccess,
+  examGetResponseRequest,
+  examGetResponseError,
+  examGetResponseSuccess,
 } from './actions';
 
 export function* examGetAllRequestSaga() {
@@ -47,7 +50,25 @@ export function* examGetOneRequestSaga({ payload }) {
   }
 }
 
+export function* examGetResponseRequestSaga({ payload }) {
+  try {
+    const response = yield api.get(`/exams/${payload}/responses`);
+    yield delay(1500);
+    return yield put(
+      examGetResponseSuccess({
+        answers: response.data?.answers || [],
+      }),
+    );
+  } catch (responseWithError) {
+    yield put(examGetResponseError());
+    return toast(responseWithError?.response?.data?.error, {
+      type: 'error',
+    });
+  }
+}
+
 export default all([
   takeLatest(examGetAllRequest, examGetAllRequestSaga),
   takeLatest(examGetOneRequest, examGetOneRequestSaga),
+  takeLatest(examGetResponseRequest, examGetResponseRequestSaga),
 ]);

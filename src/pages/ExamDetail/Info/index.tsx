@@ -14,15 +14,18 @@ const Info: React.FC<IProps> = ({ title, url, isLoading }) => {
   return (
     <Container>
       {!isLoading ? (
-        <>
-          <strong>{title}</strong>
-          <CopyToClipboardContainer>
-            <span>{url}</span>
-            <CopyToClipboard text={url}>
-              <FaRegCopy title="Copy to clipboard" />
-            </CopyToClipboard>
-          </CopyToClipboardContainer>
-        </>
+        title &&
+        url && (
+          <>
+            <strong>{title}</strong>
+            <CopyToClipboardContainer>
+              <span>{url}</span>
+              <CopyToClipboard text={url}>
+                <FaRegCopy title="Copy to clipboard" />
+              </CopyToClipboard>
+            </CopyToClipboardContainer>
+          </>
+        )
       ) : (
         <>
           <Skeleton width={300} height={30} />
