@@ -32,7 +32,7 @@ const Table: React.FC<IProps> = ({
         </thead>
         <tbody>
           {rows.map(({ created_at, id, title, updated_at }) => (
-            <Link key={id} to={`exam/${id}`}>
+            <Link key={id} to={`exam/${id}/view`}>
               <tr>
                 <td>{title}</td>
                 <td>{format(new Date(created_at), 'dd/MM/yyyy')}</td>

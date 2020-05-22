@@ -31,6 +31,20 @@ export default handleActions(
       ...state,
       isLoading: false,
     }),
+    [Constants.EXAM_GET_ONE_REQUEST]: state => ({
+      ...state,
+      isLoading: true,
+      selected: null,
+    }),
+    [Constants.EXAM_GET_ONE_SUCCESS]: (state, { payload }) => ({
+      ...state,
+      isLoading: false,
+      selected: payload.selected,
+    }),
+    [Constants.EXAM_GET_ONE_ERROR]: state => ({
+      ...state,
+      isLoading: false,
+    }),
     [Constants.EXAM_CREATE_REQUEST]: state => ({
       ...state,
       isLoadingCreate: true,

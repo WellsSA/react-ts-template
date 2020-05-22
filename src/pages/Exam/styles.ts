@@ -8,9 +8,17 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  span {
+  > span {
     font-weight: 600;
     font-size: 2.4rem;
     color: ${palette.purpleDark};
+  }
+`;
+
+export const SkeletonContainer = styled.div`
+  margin-top: 4rem;
+
+  span {
+    margin: 1rem 0;
   }
 `;

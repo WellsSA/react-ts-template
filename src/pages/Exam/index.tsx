@@ -1,5 +1,7 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { connect } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
 import { IExam } from 'modules/exam/types';
 import {
   examGetAllRequest,
@@ -8,12 +10,13 @@ import {
 import Modal from './Modal';
 import Header from './Header';
 import Table from './Table';
-import { Container } from './styles';
+import { Container, SkeletonContainer } from './styles';
 
 interface IProps {
   rows: IExam[];
   page: number;
   page_count: number;
+  isLoading: boolean;
   examGetAllRequest: () => void;
   examHandleNextPrevious: (data: { page: number }) => void;
 }
@@ -24,6 +27,7 @@ const Exam: React.FC<IProps> = ({
   rows,
   page,
   page_count,
+  isLoading,
 }) => {
   React.useEffect(() => {
     examGetAllRequest();
@@ -32,7 +36,13 @@ const Exam: React.FC<IProps> = ({
   return (
     <>
       <Header />
-      {rows.length ? (
+      {isLoading ? (
+        <SkeletonContainer>
+          {Array.from(Array(6).keys()).map(() => (
+            <Skeleton height={30} />
+          ))}
+        </SkeletonContainer>
+      ) : rows.length ? (
         <Table
           rows={rows}
           page={page}
@@ -42,7 +52,7 @@ const Exam: React.FC<IProps> = ({
         />
       ) : (
         <Container>
-          <span>Create your first exam</span>
+          <span>No exams created</span>
         </Container>
       )}
       <Modal />
@@ -50,10 +60,11 @@ const Exam: React.FC<IProps> = ({
   );
 };
 
-const mapStateToProps = ({ exam: { rows, page, page_count } }) => ({
+const mapStateToProps = ({ exam: { rows, page, page_count, isLoading } }) => ({
   rows,
   page,
   page_count,
+  isLoading,
 });
 
 export default connect(mapStateToProps, {

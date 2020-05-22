@@ -44,7 +44,7 @@ export const Table = styled.table`
     tr {
       &:hover {
         transition: 0.2s all;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 15px 1px;
+        transform: translateX(5px);
       }
     }
   }
