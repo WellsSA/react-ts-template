@@ -1,8 +1,10 @@
 /* eslint-disable no-param-reassign */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
 import { authenticationLogoutRequest } from 'modules/authentication/actions';
 import { store } from 'store';
 import config from 'config';
+import dictionary from './dictionary';
 
 const api = axios.create({ baseURL: config.api.url });
 
@@ -25,9 +27,24 @@ api.interceptors.response.use(
     return config;
   },
   error => {
-    if (error?.response?.status === 401) {
+    const data = error?.response?.data;
+    if (
+      error?.response?.status === 401 &&
+      (data?.errorCode === 'JWT_MISSING' || data?.errorCode === 'JWT_INVALID')
+    ) {
       store.dispatch(authenticationLogoutRequest());
     }
+    const hasMessageError = dictionary[data?.errorCode];
+    if (hasMessageError) {
+      toast(hasMessageError, {
+        type: 'error',
+      });
+    } else {
+      toast(dictionary.GENERIC_ERROR, {
+        type: 'error',
+      });
+    }
+
     return Promise.reject(error);
   },
 );

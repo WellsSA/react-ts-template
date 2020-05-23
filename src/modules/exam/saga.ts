@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { all, put, takeLatest, delay } from 'redux-saga/effects';
 import { retryApi, api } from 'services';
-import { toast } from 'react-toastify';
 import {
   examGetAllRequest,
   examGetAllError,
@@ -38,10 +37,7 @@ export function* examGetAllRequestSaga() {
       }),
     );
   } catch (responseWithError) {
-    yield put(examGetAllError());
-    return toast(responseWithError?.response?.data?.error, {
-      type: 'error',
-    });
+    return yield put(examGetAllError());
   }
 }
 
@@ -50,10 +46,7 @@ export function* examGetOneRequestSaga({ payload }) {
     const response = yield retryApi(`/exams/${payload}`, {}, 2);
     return yield put(examGetOneSuccess({ selected: response.data }));
   } catch (responseWithError) {
-    yield put(examGetOneError());
-    return toast(responseWithError?.response?.data?.error, {
-      type: 'error',
-    });
+    return yield put(examGetOneError());
   }
 }
 
@@ -67,10 +60,7 @@ export function* examGetResponseRequestSaga({ payload }) {
       }),
     );
   } catch (responseWithError) {
-    yield put(examGetResponseError());
-    return toast(responseWithError?.response?.data?.error, {
-      type: 'error',
-    });
+    return yield put(examGetResponseError());
   }
 }
 
@@ -81,10 +71,7 @@ export function* examDeleteRequestSaga({ payload }) {
       examDeleteSuccess({ selected: { id: payload?.selected?.id } }),
     );
   } catch (responseWithError) {
-    yield put(examDeleteError());
-    return toast(responseWithError?.response?.data?.error, {
-      type: 'error',
-    });
+    return yield put(examDeleteError());
   }
 }
 

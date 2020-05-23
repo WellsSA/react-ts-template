@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { all, takeLatest, put } from 'redux-saga/effects';
 import { api, history } from 'services';
-import { toast } from 'react-toastify';
 import {
   authenticationRequest,
   authenticationSuccess,
@@ -21,10 +20,7 @@ export function* authenticationRequestSaga({ payload }: ISignUpRequest) {
     yield put(authenticationSuccess(response.data));
     return history.push('/dashboard');
   } catch (responseWithError) {
-    yield put(authenticationError());
-    return toast(responseWithError?.response?.data?.error, {
-      type: 'error',
-    });
+    return yield put(authenticationError());
   }
 }
 

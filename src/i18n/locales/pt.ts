@@ -1,5 +1,19 @@
 export default {
   translation: {
+    ERRORS: {
+      GENERIC_ERROR: 'Não foi possível processar sua solicitação',
+      USER_INCORRET_PASSWORD_EMAIL: 'Email/Senha incorreto',
+      USER_EMAIL_ALREADY_USED: 'Esse email está em uso',
+      USER_TOKEN_PASSWORD_NOT_EXISTS: 'Token inválido',
+      USER_TOKEN_PASSWORD_EXPIRED: 'Token expirado solicite um novo token',
+      USER_NOT_EXISTS: 'Usuário não encontrado',
+      USER_NEED_OLD_PASSWORD: 'É obrigatório enviar a antiga senha',
+      USER_PASSWORD_DOES_NOT_MATCH: 'As senhas não conferem',
+      JWT_INVALID: 'Sua sessão expirou, realize o login novamente',
+      EXAM_NOT_EXISTS: 'Prova não encontrada',
+      EXAM_USER_FORBIDDEN:
+        'Você não possui permissão para efetuar essa operação',
+    },
     COMMON: {
       LOADING_KEY: 'Carregando',
       APPLICATION_NAME_KEY: 'Aplicador de Provas',
@@ -19,7 +33,7 @@ export default {
       REQUIRED_FIELD_KEY: 'Campo obrigatório',
       EMAIL_FIELD_INVALID_KEY: 'Email inválido',
       PASSWORD_MISMATCH_KEY: 'As senhas não conferem',
-      OR_KEY: 'Ou',
+      OR_KEY: 'ou',
     },
     EXAM: {
       EXAM_KEY: 'Provas',
