@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import Header from 'components/Header';
 import SideMenu from 'components/SideMenu';
 import {
@@ -16,7 +17,7 @@ const LoggedIn: React.FC<IProps> = ({ children }) => {
   return (
     <Container>
       <LeftSideContainer>
-        <SideMenu title="Exam Applier" />
+        <SideMenu title={i18n.t('COMMON.APPLICATION_NAME_KEY')} />
       </LeftSideContainer>
       <RightSideContainer>
         <Header />

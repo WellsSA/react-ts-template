@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { authenticationUpdateProfileRequest } from 'modules/authentication/actions';
@@ -38,7 +39,7 @@ const Profile: React.FC<IProps> = ({
           <Container>
             <Input
               placeholder="*********"
-              label="Name"
+              label={i18n.t('COMMON.NAME_KEY')}
               type="text"
               name="name"
               value={values.name}
@@ -47,7 +48,7 @@ const Profile: React.FC<IProps> = ({
             />
             <Input
               placeholder="email@email.com"
-              label="Email"
+              label={i18n.t('COMMON.EMAIL_KEY')}
               name="email"
               value={values.email}
               onChange={handleChange}
@@ -55,7 +56,7 @@ const Profile: React.FC<IProps> = ({
             />
             <Input
               placeholder="***************"
-              label="Password"
+              label={i18n.t('COMMON.PASSWORD_KEY')}
               type="password"
               name="password"
               value={values.password}
@@ -64,7 +65,7 @@ const Profile: React.FC<IProps> = ({
             />
             <Input
               placeholder="***************"
-              label="Confirm Password"
+              label={i18n.t('COMMON.CONFIRM_PASSWORD_KEY')}
               type="password"
               name="confirmPassword"
               value={values.confirmPassword}
@@ -74,7 +75,7 @@ const Profile: React.FC<IProps> = ({
           </Container>
           <ButtonContainer>
             <Button type="submit" onClick={() => handleSubmit()}>
-              Update Profile
+              {i18n.t('PROFILE.UPDATE_PROFILE_KEY')}
             </Button>
           </ButtonContainer>
         </>

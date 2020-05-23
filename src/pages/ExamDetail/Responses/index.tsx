@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
+import i18n from 'i18n';
 import Skeleton from 'react-loading-skeleton';
 import { IAnswer } from 'modules/exam/types';
 import { List, SkeletonContainer, CollapseContainer, Collapse } from './styles';
@@ -34,7 +35,7 @@ const Responses: React.FC<IProps> = ({ answers, isLoading, fieldsName }) => {
         answers.map((response, index) => (
           <li>
             <button onClick={() => handleSelectResponse(index)} type="button">
-              {`Resposta #${index + 1}`}
+              {`${i18n.t('EXAM_DETAIL.ANSWER_KEY')} #${index + 1}`}
             </button>
             <Collapse isOpened={selectedResponse === index}>
               <CollapseContainer>

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
+import i18n from 'i18n';
 import { connect } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
 import { IExam } from 'modules/exam/types';
@@ -59,7 +60,7 @@ const Exam: React.FC<IProps> = ({
         />
       ) : (
         <Container>
-          <span>No exams created</span>
+          <span>{i18n.t('EXAM.NO_EXAMS_CREATED_KEY')}</span>
         </Container>
       )}
       <Modal />

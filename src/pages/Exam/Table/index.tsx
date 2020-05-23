@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { IExam } from 'modules/exam/types';
@@ -28,10 +29,10 @@ const Table: React.FC<IProps> = ({
       <TableStyled>
         <thead>
           <tr>
-            <td>Nome</td>
-            <td>Data de Criação</td>
-            <td>Atualizado em</td>
-            <td>Ações</td>
+            <td>{i18n.t('COMMON.NAME_KEY')}</td>
+            <td>{i18n.t('COMMON.CREATED_AT_KEY')}</td>
+            <td>{i18n.t('COMMON.UPDATED_AT_KEY')}</td>
+            <td>{i18n.t('COMMON.ACTIONS_KEY')}</td>
           </tr>
         </thead>
         <tbody>
@@ -57,14 +58,14 @@ const Table: React.FC<IProps> = ({
       </TableStyled>
       <ContainerButton>
         <Button disabled={page <= 1} onClick={onClickPrevious}>
-          Anterior
+          {i18n.t('COMMON.BACK_KEY')}
         </Button>
         <span>{`${page}/${pageCount}`}</span>
         <Button
           disabled={pageCount <= 1 || page >= pageCount}
           onClick={onClickNext}
         >
-          Próxima
+          {i18n.t('COMMON.NEXT_KEY')}
         </Button>
       </ContainerButton>
     </Container>

@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import Modal from 'components/Modal';
@@ -42,8 +43,8 @@ const ModalExam: React.FC<IProps> = ({
         {({ values, errors, handleChange, handleSubmit }) => (
           <Container>
             <Input
-              placeholder="Nome da prova"
-              label="Nome da prova"
+              placeholder={i18n.t('COMMON.EXAM_NAME_KEY')}
+              label={i18n.t('COMMON.EXAM_NAME_KEY')}
               name="name"
               value={values.name}
               onChange={handleChange}
@@ -51,10 +52,14 @@ const ModalExam: React.FC<IProps> = ({
             />
             <ButtonsContainer>
               <Button onClick={() => examHandleModal({ modalOpen: false })}>
-                Voltar
+                {i18n.t('COMMON.BACK_KEY')}
               </Button>
               <Button onClick={() => handleSubmit()}>
-                {isLoadingCreate ? <Loading type="spin" /> : 'Salvar'}
+                {isLoadingCreate ? (
+                  <Loading type="spin" />
+                ) : (
+                  i18n.t('COMMON.SAVE_KEY')
+                )}
               </Button>
             </ButtonsContainer>
           </Container>

@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import Button from 'components/Button';
 import { Container, DescriptionContainer, ButtonContainer } from './styles';
 
@@ -6,11 +7,11 @@ const Header: React.FC = () => {
   return (
     <Container>
       <DescriptionContainer>
-        <h2>Welcome</h2>
-        <p>View report based on current exams created</p>
+        <h2>{i18n.t('COMMON.WELCOME_KEY')}</h2>
+        <p>{i18n.t('DASHBOARD.DESCRIPTION_KEY')}</p>
       </DescriptionContainer>
       <ButtonContainer>
-        <Button>Create an exam</Button>
+        <Button>{i18n.t('COMMON.CREATE_EXAM_KEY')}</Button>
       </ButtonContainer>
     </Container>
   );

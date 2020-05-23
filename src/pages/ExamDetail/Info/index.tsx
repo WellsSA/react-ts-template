@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import Skeleton from 'react-loading-skeleton';
 import { FaRegCopy } from 'react-icons/fa';
 import CopyToClipboard from 'react-copy-to-clipboard';
@@ -21,7 +22,9 @@ const Info: React.FC<IProps> = ({ title, url, isLoading }) => {
             <CopyToClipboardContainer>
               <span>{url}</span>
               <CopyToClipboard text={url}>
-                <FaRegCopy title="Copy to clipboard" />
+                <FaRegCopy
+                  title={i18n.t('EXAM_DETAIL.COPY_TO_CLIPBOARD_KEY')}
+                />
               </CopyToClipboard>
             </CopyToClipboardContainer>
           </>

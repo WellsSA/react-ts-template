@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import { connect } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import { authenticationLogoutRequest } from 'modules/authentication/actions';
@@ -21,17 +22,17 @@ interface IMenuItems {
 const menuItems: IMenuItems[] = [
   {
     icon: <FaChartBar />,
-    label: 'Dashboard',
+    label: i18n.t('DASHBOARD.DASHBOARD_KEY'),
     to: '/dashboard',
   },
   {
     icon: <FaUser />,
-    label: 'Profile',
+    label: i18n.t('PROFILE.PROFILE_KEY'),
     to: '/profile',
   },
   {
     icon: <FaBook />,
-    label: 'Exam',
+    label: i18n.t('EXAM.EXAM_KEY'),
     to: '/exam',
   },
 ];
@@ -51,7 +52,7 @@ const SideMenu: React.FC<IProps> = ({ title, authenticationLogoutRequest }) => {
       </List>
       <LogoutContainer onClick={authenticationLogoutRequest}>
         <FaSignOutAlt />
-        <span>Logout</span>
+        <span>{i18n.t('COMMON.LOGOUT_KEY')}</span>
       </LogoutContainer>
     </Container>
   );

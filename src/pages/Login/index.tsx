@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { authenticationRequest } from 'modules/authentication/actions';
@@ -35,10 +36,10 @@ const Login: React.FC<IProps> = ({ authenticationRequest }) => {
       >
         {({ values, errors, handleChange, handleSubmit }) => (
           <>
-            <Title>Welcome</Title>
+            <Title>{i18n.t('COMMON.WELCOME_KEY')}</Title>
             <Input
               placeholder="email@email.com"
-              label="Email"
+              label={i18n.t('COMMON.EMAIL_KEY')}
               name="email"
               value={values.email}
               onChange={handleChange}
@@ -46,7 +47,7 @@ const Login: React.FC<IProps> = ({ authenticationRequest }) => {
             />
             <Input
               placeholder="*********"
-              label="Password"
+              label={i18n.t('COMMON.PASSWORD_KEY')}
               type="password"
               name="password"
               value={values.password}
@@ -54,12 +55,14 @@ const Login: React.FC<IProps> = ({ authenticationRequest }) => {
               error={errors.password}
             />
             <Button type="submit" onClick={() => handleSubmit()}>
-              Log in
+              {i18n.t('LOGIN.LOGIN_KEY')}
             </Button>
             <Or>
-              <span>Or</span>
+              <span>{i18n.t('COMMON.OR_KEY')}</span>
             </Or>
-            <Button onClick={() => history.push('/signup')}>Sign Up</Button>
+            <Button onClick={() => history.push('/signup')}>
+              {i18n.t('SIGN_UP.SIGN_UP_KEY')}
+            </Button>
           </>
         )}
       </Formik>

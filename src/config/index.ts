@@ -1,5 +1,5 @@
 export default {
   api: {
-    url: 'http://localhost:3333',
+    url: process.env.REACT_APP_API_URL,
   },
 };

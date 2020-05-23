@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import Button from 'components/Button';
 import { connect } from 'react-redux';
 import { examHandleModal } from 'modules/exam/actions';
@@ -12,12 +13,12 @@ const Header: React.FC<IProps> = ({ examHandleModal }) => {
   return (
     <Container>
       <DescriptionContainer>
-        <h2>Exam</h2>
-        <p>See a list of exam already created</p>
+        <h2>{i18n.t('EXAM.EXAM_KEY')}</h2>
+        <p>{i18n.t('EXAM.DESCRIPTION_KEY')}</p>
       </DescriptionContainer>
       <ButtonContainer>
         <Button onClick={() => examHandleModal({ modalOpen: true })}>
-          Create an exam
+          {i18n.t('COMMON.CREATE_EXAM_KEY')}
         </Button>
       </ButtonContainer>
     </Container>

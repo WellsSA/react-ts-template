@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from 'i18n';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import { signUpRequest } from 'modules/signup/actions';
@@ -23,6 +24,7 @@ const initialValues = {
   email: '',
   password: '',
   name: '',
+  confirmPassword: '',
 };
 
 const SignUp: React.FC<IProps> = ({ signUpRequest }) => {
@@ -37,10 +39,10 @@ const SignUp: React.FC<IProps> = ({ signUpRequest }) => {
       >
         {({ values, errors, handleChange, handleSubmit }) => (
           <>
-            <Title>Create Account</Title>
+            <Title>{i18n.t('SIGN_UP.CREATE_AN_ACCOUNT_KEY')}</Title>
             <Input
-              placeholder="Name"
-              label="Name"
+              placeholder={i18n.t('COMMON.NAME_KEY')}
+              label={i18n.t('COMMON.NAME_KEY')}
               name="name"
               value={values.name}
               onChange={handleChange}
@@ -48,7 +50,7 @@ const SignUp: React.FC<IProps> = ({ signUpRequest }) => {
             />
             <Input
               placeholder="email@email.com"
-              label="Email"
+              label={i18n.t('COMMON.EMAIL_KEY')}
               name="email"
               value={values.email}
               onChange={handleChange}
@@ -56,20 +58,31 @@ const SignUp: React.FC<IProps> = ({ signUpRequest }) => {
             />
             <Input
               placeholder="*********"
-              label="Password"
+              label={i18n.t('COMMON.PASSWORD_KEY')}
               type="password"
               name="password"
               value={values.password}
               onChange={handleChange}
               error={errors.password}
             />
+            <Input
+              placeholder="*********"
+              label={i18n.t('COMMON.CONFIRM_PASSWORD_KEY')}
+              type="password"
+              name="confirmPassword"
+              value={values.password}
+              onChange={handleChange}
+              error={errors.password}
+            />
             <Button type="submit" onClick={() => handleSubmit()}>
-              Sign Up
+              {i18n.t('SIGN_UP.SIGN_UP_KEY')}
             </Button>
             <Or>
-              <span>Or</span>
+              <span>{i18n.t('COMMON.OR_KEY')}</span>
             </Or>
-            <Button onClick={() => history.push('/')}>Log in</Button>
+            <Button onClick={() => history.push('/')}>
+              {i18n.t('LOGIN.LOGIN_KEY')}
+            </Button>
           </>
         )}
       </Formik>

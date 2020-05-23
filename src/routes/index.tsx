@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import LazyLoading from 'components/LazyLoading';
 import PrivateRoute from './PrivateRoute';
 
 const Login = lazy(() => import('pages/Login'));
@@ -12,7 +13,7 @@ const ExamDetail = lazy(() => import('pages/ExamDetail'));
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<LazyLoading />}>
         <Route exact path="/" component={Login} />
         <Route path="/signUp" component={SignUp} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
