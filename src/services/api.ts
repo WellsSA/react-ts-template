@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { authenticationLogoutRequest } from 'modules/authentication/actions';
 import { store } from 'store';
 import config from 'config';
 
@@ -15,6 +16,18 @@ api.interceptors.request.use(
     return config;
   },
   error => {
+    return Promise.reject(error);
+  },
+);
+
+api.interceptors.response.use(
+  async config => {
+    return config;
+  },
+  error => {
+    if (error?.response?.status === 401) {
+      store.dispatch(authenticationLogoutRequest());
+    }
     return Promise.reject(error);
   },
 );
