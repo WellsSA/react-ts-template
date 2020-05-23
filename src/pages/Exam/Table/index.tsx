@@ -12,6 +12,7 @@ interface IProps {
   pageCount: number;
   onClickNext: () => void;
   onClickPrevious: () => void;
+  onClickDelete: (id: string) => void;
 }
 
 const Table: React.FC<IProps> = ({
@@ -20,6 +21,7 @@ const Table: React.FC<IProps> = ({
   pageCount,
   onClickNext,
   onClickPrevious,
+  onClickDelete,
 }) => {
   return (
     <Container>
@@ -34,13 +36,18 @@ const Table: React.FC<IProps> = ({
         </thead>
         <tbody>
           {rows.map(({ created_at, id, title, updated_at }) => (
-            <tr>
+            <tr key={id}>
               <td>{title}</td>
               <td>{format(new Date(created_at), 'dd/MM/yyyy')}</td>
               <td>{format(new Date(updated_at), 'dd/MM/yyyy')}</td>
               <td>
-                <FaTrash size={16} />
-                <Link key={id} to={`exam/${id}/view`}>
+                <FaTrash
+                  size={16}
+                  onClick={() => {
+                    onClickDelete(id);
+                  }}
+                />
+                <Link to={`exam/${id}/view`}>
                   <FaEdit size={16} />
                 </Link>
               </td>

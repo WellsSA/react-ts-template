@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { all, put, takeLatest, delay } from 'redux-saga/effects';
-import { retryApi } from 'services';
+import { retryApi, api } from 'services';
 import { toast } from 'react-toastify';
 import {
   examGetAllRequest,
@@ -12,6 +12,9 @@ import {
   examGetResponseRequest,
   examGetResponseError,
   examGetResponseSuccess,
+  examDeleteRequest,
+  examDeleteError,
+  examDeleteSuccess,
 } from './actions';
 
 export function* examGetAllRequestSaga() {
@@ -71,8 +74,23 @@ export function* examGetResponseRequestSaga({ payload }) {
   }
 }
 
+export function* examDeleteRequestSaga({ payload }) {
+  try {
+    yield api.delete(`/exams/${payload?.selected?.id}`);
+    return yield put(
+      examDeleteSuccess({ selected: { id: payload?.selected?.id } }),
+    );
+  } catch (responseWithError) {
+    yield put(examDeleteError());
+    return toast(responseWithError?.response?.data?.error, {
+      type: 'error',
+    });
+  }
+}
+
 export default all([
   takeLatest(examGetAllRequest, examGetAllRequestSaga),
   takeLatest(examGetOneRequest, examGetOneRequestSaga),
   takeLatest(examGetResponseRequest, examGetResponseRequestSaga),
+  takeLatest(examDeleteRequest, examDeleteRequestSaga),
 ]);
