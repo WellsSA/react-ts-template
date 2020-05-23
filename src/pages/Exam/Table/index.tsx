@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTrash, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { IExam } from 'modules/exam/types';
 import Button from 'components/Button';
@@ -28,17 +29,22 @@ const Table: React.FC<IProps> = ({
             <td>Nome</td>
             <td>Data de Criação</td>
             <td>Atualizado em</td>
+            <td>Ações</td>
           </tr>
         </thead>
         <tbody>
           {rows.map(({ created_at, id, title, updated_at }) => (
-            <Link key={id} to={`exam/${id}/view`}>
-              <tr>
-                <td>{title}</td>
-                <td>{format(new Date(created_at), 'dd/MM/yyyy')}</td>
-                <td>{format(new Date(updated_at), 'dd/MM/yyyy')}</td>
-              </tr>
-            </Link>
+            <tr>
+              <td>{title}</td>
+              <td>{format(new Date(created_at), 'dd/MM/yyyy')}</td>
+              <td>{format(new Date(updated_at), 'dd/MM/yyyy')}</td>
+              <td>
+                <FaTrash size={16} />
+                <Link key={id} to={`exam/${id}/view`}>
+                  <FaEdit size={16} />
+                </Link>
+              </td>
+            </tr>
           ))}
         </tbody>
       </TableStyled>

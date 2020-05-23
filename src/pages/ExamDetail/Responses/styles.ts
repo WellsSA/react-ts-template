@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Collapse as ReactCollapse } from 'react-collapse';
 import palette from 'theme/palette';
 
 export const List = styled.ul`
@@ -37,5 +38,20 @@ export const SkeletonContainer = styled.div`
 
   span {
     margin: 1rem 0;
+  }
+`;
+export const Collapse = styled(ReactCollapse)``;
+
+export const CollapseContainer = styled.div`
+  max-height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  p {
+    strong {
+      margin-right: 5px;
+      font-weight: 600;
+    }
   }
 `;

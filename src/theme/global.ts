@@ -30,4 +30,14 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .ReactCollapse--collapse {
+    width: 100%;
+  }
+
+  .ReactCollapse--content {
+    width: 100%;
+  }
+
+
 `;

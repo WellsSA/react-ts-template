@@ -25,7 +25,7 @@ export const Table = styled.table`
 
   tr {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     background: ${palette.white};
     margin: 1rem 0;
     padding: 1rem 0;
@@ -33,11 +33,15 @@ export const Table = styled.table`
     border-radius: 4px;
     align-items: center;
     justify-items: center;
-    cursor: pointer;
   }
 
   td {
     font-size: 1.4rem;
+  }
+
+  svg {
+    cursor: pointer;
+    margin: 0 0.5rem;
   }
 
   tbody {

@@ -29,12 +29,12 @@ const ExamDetail: React.FC<IProps> = ({
 }) => {
   const { id } = useParams();
 
-  // const fieldsAsObject = React.useMemo(() => {
-  //   return exam?.fields.reduce(
-  //     (acc, { id, title }) => ({ ...acc, [id]: title }),
-  //     {},
-  //   );
-  // }, [exam]);
+  const fieldsAsObject = React.useMemo(() => {
+    return exam?.fields.reduce(
+      (acc, { id, title }) => ({ ...acc, [id]: title }),
+      {},
+    );
+  }, [exam]);
 
   React.useEffect(() => {
     examGetOneRequest(id);
@@ -46,7 +46,11 @@ const ExamDetail: React.FC<IProps> = ({
       <Header />
       <Container>
         <Info isLoading={isLoading} title={exam?.title} url={exam?.url} />
-        <Responses answers={answers} isLoading={isLoadingResponse} />
+        <Responses
+          answers={answers}
+          isLoading={isLoadingResponse}
+          fieldsName={fieldsAsObject || {}}
+        />
       </Container>
     </>
   );

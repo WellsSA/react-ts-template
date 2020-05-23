@@ -1,16 +1,16 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { Collapse } from 'react-collapse';
 import { IAnswer } from 'modules/exam/types';
-import { List, SkeletonContainer } from './styles';
+import { List, SkeletonContainer, CollapseContainer, Collapse } from './styles';
 
 interface IProps {
   answers: IAnswer[][];
   isLoading: boolean;
+  fieldsName: Record<string, string>;
 }
 
-const Responses: React.FC<IProps> = ({ answers, isLoading }) => {
+const Responses: React.FC<IProps> = ({ answers, isLoading, fieldsName }) => {
   const [selectedResponse, setSelectedResponse] = React.useState<number | null>(
     null,
   );
@@ -36,7 +36,16 @@ const Responses: React.FC<IProps> = ({ answers, isLoading }) => {
             <button onClick={() => handleSelectResponse(index)} type="button">
               {`Resposta #${index + 1}`}
             </button>
-            <Collapse isOpened={selectedResponse === index}>oi</Collapse>
+            <Collapse isOpened={selectedResponse === index}>
+              <CollapseContainer>
+                {response?.map(({ text, title }) => (
+                  <p>
+                    <strong>{fieldsName[title] || ''}</strong>
+                    {text}
+                  </p>
+                ))}
+              </CollapseContainer>
+            </Collapse>
           </li>
         ))
       )}
