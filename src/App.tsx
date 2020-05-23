@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Routes from 'routes';
 import GlobalStyle from 'theme/global';
 import { Provider } from 'react-redux';
@@ -17,6 +18,9 @@ const App: React.FC = () => {
         <PersistGate loading={null} persistor={persistor}>
           <I18nextProvider i18n={i18n}>
             <Router history={history}>
+              <Helmet>
+                <title>{i18n.t('COMMON.APPLICATION_NAME_KEY')}</title>
+              </Helmet>
               <GlobalStyle />
               <Routes />
               <ToastContainer />
