@@ -8,7 +8,7 @@ export default {
       USER_TOKEN_PASSWORD_EXPIRED: 'Token expirado solicite um novo token',
       USER_NOT_EXISTS: 'Usuário não encontrado',
       USER_NEED_OLD_PASSWORD: 'É obrigatório enviar a antiga senha',
-      USER_PASSWORD_DOES_NOT_MATCH: 'As senhas não conferem',
+      USER_PASSWORD_DOES_NOT_MATCH: 'A senha atual incorreta',
       JWT_INVALID: 'Sua sessão expirou, realize o login novamente',
       EXAM_NOT_EXISTS: 'Prova não encontrada',
       EXAM_USER_FORBIDDEN:
@@ -48,6 +48,9 @@ export default {
     },
     PROFILE: {
       PROFILE_KEY: 'Perfil',
+      OLD_PASSWORD_KEY: 'Senha antiga',
+      NEW_PASSWORD_KEY: 'Nova senha',
+      OLD_PASSWORD_REQUIRED_KEY: 'Você deve informar sua senha atual',
       UPDATE_PROFILE_KEY: 'Atualizar perfil',
       DESCRIPTION_KEY: 'Editar seus dados',
     },
@@ -60,7 +63,7 @@ export default {
     },
     DASHBOARD: {
       DASHBOARD_KEY: 'Dashboard',
-      DESCRIPTION_KEY: 'Dados baseados nas provas criadas',
+      DESCRIPTION_KEY: 'Dados baseados nas provas criadas nos últimos 3 dias',
     },
   },
 };

@@ -27,6 +27,25 @@ export default handleActions(
       ...state,
       isLoading: false,
     }),
+    [Constants.AUTHENTICATION_UPDATE_PROFILE_REQUEST]: state => ({
+      ...state,
+      isLoading: true,
+    }),
+    [Constants.AUTHENTICATION_UPDATE_PROFILE_SUCCESS]: (
+      state: IInitialState,
+      { payload },
+    ) => ({
+      ...state,
+      isLoading: false,
+      user: {
+        ...state.user,
+        ...payload.user,
+      },
+    }),
+    [Constants.AUTHENTICATION_UPDATE_PROFILE_ERROR]: state => ({
+      ...state,
+      isLoading: false,
+    }),
   },
   initialState,
 );

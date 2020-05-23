@@ -5,6 +5,9 @@ import {
   authenticationRequest,
   authenticationSuccess,
   authenticationError,
+  authenticationUpdateProfileRequest,
+  authenticationUpdateProfileSuccess,
+  authenticationUpdateProfileError,
 } from './actions';
 
 export interface ISignUpRequest {
@@ -24,6 +27,28 @@ export function* authenticationRequestSaga({ payload }: ISignUpRequest) {
   }
 }
 
+export function* authenticationUpdateProfileRequestSaga({ payload }) {
+  try {
+    const response = yield api.put('/me', {
+      name: payload?.name,
+      email: payload?.email,
+      old_password: payload?.oldPassword || '',
+      password: payload?.password || '',
+      password_confirmation: payload?.confirmPassword || '',
+    });
+    const { name, email } = response.data;
+    return yield put(
+      authenticationUpdateProfileSuccess({ user: { name, email } }),
+    );
+  } catch (responseWithError) {
+    return yield put(authenticationUpdateProfileError());
+  }
+}
+
 export default all([
   takeLatest(authenticationRequest, authenticationRequestSaga),
+  takeLatest(
+    authenticationUpdateProfileRequest,
+    authenticationUpdateProfileRequestSaga,
+  ),
 ]);

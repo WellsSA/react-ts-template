@@ -6,12 +6,13 @@ import { authenticationUpdateProfileRequest } from 'modules/authentication/actio
 import Input from 'components/Input';
 import Button from 'components/Button';
 import validationSchema from './validationSchema';
-import { Container, ButtonContainer } from './styles';
+import { Container } from './styles';
 import Header from './Header';
 
 interface ISchema {
   email: string;
   name: string;
+  oldPassword: string;
   password: string;
   confirmPassword: string;
 }
@@ -56,7 +57,16 @@ const Profile: React.FC<IProps> = ({
             />
             <Input
               placeholder="***************"
-              label={i18n.t('COMMON.PASSWORD_KEY')}
+              label={i18n.t('PROFILE.OLD_PASSWORD_KEY')}
+              type="password"
+              name="oldPassword"
+              value={values.oldPassword}
+              onChange={handleChange}
+              error={errors.oldPassword}
+            />
+            <Input
+              placeholder="***************"
+              label={i18n.t('PROFILE.NEW_PASSWORD_KEY')}
               type="password"
               name="password"
               value={values.password}
@@ -72,12 +82,10 @@ const Profile: React.FC<IProps> = ({
               onChange={handleChange}
               error={errors.confirmPassword}
             />
-          </Container>
-          <ButtonContainer>
             <Button type="submit" onClick={() => handleSubmit()}>
               {i18n.t('PROFILE.UPDATE_PROFILE_KEY')}
             </Button>
-          </ButtonContainer>
+          </Container>
         </>
       )}
     </Formik>

@@ -11,4 +11,9 @@ export default Yup.object().shape({
     [Yup.ref('password'), null],
     i18n.t('COMMON.PASSWORD_MISMATCH_KEY'),
   ),
+  oldPassword: Yup.string().when('password', {
+    is: value => value && value.length > 0,
+    then: Yup.string().required(i18n.t('PROFILE.OLD_PASSWORD_REQUIRED_KEY')),
+    otherwise: Yup.string(),
+  }),
 });
