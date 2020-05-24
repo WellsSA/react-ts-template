@@ -33,10 +33,10 @@ export interface IInitialState {
   isLoadingCreate: boolean;
   isLoadingResponse: boolean;
   rows: IExam[];
-  answers: IAnswer[][];
   selected: IExamSelected | null;
   modalOpen: boolean;
   page: number;
   total_items: number;
   page_count: number;
+  answers: IAnswer[][];
 }

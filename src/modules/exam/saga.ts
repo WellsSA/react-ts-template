@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { all, put, takeLatest, delay } from 'redux-saga/effects';
+import { all, put, takeLatest, delay, select } from 'redux-saga/effects';
 import { retryApi, api } from 'services';
 import {
   examGetAllRequest,
@@ -18,11 +18,14 @@ import {
 
 export function* examGetAllRequestSaga() {
   try {
+    const {
+      exam: { page },
+    } = yield select();
     const response = yield retryApi(
       '/exams',
       {
         params: {
-          page: 1,
+          page,
           page_size: 1,
         },
       },
@@ -52,11 +55,21 @@ export function* examGetOneRequestSaga({ payload }) {
 
 export function* examGetResponseRequestSaga({ payload }) {
   try {
-    const response = yield retryApi(`/exams/${payload}/responses`, {}, 2);
+    const response = yield retryApi(
+      `/exams/${payload}/responses`,
+      {
+        params: {
+          page_size: 1000,
+        },
+      },
+      2,
+    );
     yield delay(1500);
     return yield put(
       examGetResponseSuccess({
-        answers: response.data?.answers || [],
+        answers: response.data?.items || [],
+        answers_page_count: response.data?.page_count,
+        answers_total_items: response.data?.total_items,
       }),
     );
   } catch (responseWithError) {

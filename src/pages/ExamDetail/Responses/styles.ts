@@ -4,6 +4,10 @@ import palette from 'theme/palette';
 
 export const List = styled.ul`
   margin-top: 4rem;
+  display: block;
+  max-height: 40rem;
+
+  overflow-y: auto;
 
   li {
     display: flex;

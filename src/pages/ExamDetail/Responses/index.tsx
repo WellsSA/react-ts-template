@@ -33,14 +33,14 @@ const Responses: React.FC<IProps> = ({ answers, isLoading, fieldsName }) => {
         </SkeletonContainer>
       ) : (
         answers.map((response, index) => (
-          <li>
+          <li key={`${index + 1}`}>
             <button onClick={() => handleSelectResponse(index)} type="button">
               {`${i18n.t('EXAM_DETAIL.ANSWER_KEY')} #${index + 1}`}
             </button>
             <Collapse isOpened={selectedResponse === index}>
               <CollapseContainer>
-                {response?.map(({ text, title }) => (
-                  <p>
+                {response?.map(({ text, title }, i) => (
+                  <p key={fieldsName[title] || i}>
                     <strong>{fieldsName[title] || ''}</strong>
                     {text}
                   </p>

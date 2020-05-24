@@ -13,6 +13,7 @@ import { Title, Or } from './styles';
 interface ISchema {
   email: string;
   password: string;
+  confirmPassword: string;
   name: string;
 }
 
@@ -70,9 +71,9 @@ const SignUp: React.FC<IProps> = ({ signUpRequest }) => {
               label={i18n.t('COMMON.CONFIRM_PASSWORD_KEY')}
               type="password"
               name="confirmPassword"
-              value={values.password}
+              value={values.confirmPassword}
               onChange={handleChange}
-              error={errors.password}
+              error={errors.confirmPassword}
             />
             <Button type="submit" onClick={() => handleSubmit()}>
               {i18n.t('SIGN_UP.SIGN_UP_KEY')}

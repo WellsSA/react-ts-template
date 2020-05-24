@@ -40,4 +40,19 @@ export default createGlobalStyle`
   }
 
 
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,.2);
+    border-radius: 5px;
+
+  }
+
+  ::-webkit-scrollbar {
+      width: 6px!important;
+      height: 6px!important;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: hsla(0,0%,100%,.1);
+  }
+
 `;
