@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from 'theme/palette';
 
 interface IButton {
-  variant: 'outlined' | 'contained';
+  variant: 'outlined' | 'contained' | 'dashed';
   disabled?: boolean;
 }
 export const Button = styled.button<IButton>`
@@ -12,11 +12,25 @@ export const Button = styled.button<IButton>`
   border: none;
   border-radius: 4px;
 
-  background-color: ${props =>
-    props.variant === 'outlined' ? palette.white : palette.purpleDark};
+  ${props =>
+    props.variant === 'outlined' &&
+    css`
+      background-color: ${palette.white};
+      color: ${palette.purpleDark};
+    `}
 
-  color: ${props =>
-    props.variant === 'outlined' ? palette.purpleDark : palette.white};
+  ${props =>
+    props.variant === 'contained' &&
+    css`
+      background-color: ${palette.purpleDark};
+      color: ${palette.white};
+    `}
+
+  ${props =>
+    props.variant === 'dashed' &&
+    css`
+      border: 2px dashed ${palette.purpleDark};
+    `}
 
   font-weight: 600;
 

@@ -4,7 +4,7 @@ import { Button as ButtonStyled } from './styles';
 
 interface IProps {
   children: React.ReactNode;
-  variant?: 'outlined' | 'contained';
+  variant?: 'outlined' | 'contained' | 'dashed';
   type?: 'button' | 'submit';
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
