@@ -8,6 +8,7 @@ import Button from 'components/Button';
 import { examHandleModal, examCreateRequest } from 'modules/exam/actions';
 import validationSchema from './validationSchema';
 import { Container, ButtonsContainer, Loading } from './styles';
+import Questions from './Questions';
 
 interface ISchema {
   name: string;
@@ -32,7 +33,7 @@ const ModalExam: React.FC<IProps> = ({
 }) => {
   return (
     <Modal
-      open={modalOpen}
+      open={true || modalOpen}
       onClose={() => examHandleModal({ modalOpen: false })}
     >
       <Formik
@@ -50,6 +51,8 @@ const ModalExam: React.FC<IProps> = ({
               onChange={handleChange}
               error={errors.name}
             />
+            <Questions />
+
             <ButtonsContainer>
               <Button onClick={() => examHandleModal({ modalOpen: false })}>
                 {i18n.t('COMMON.BACK_KEY')}
