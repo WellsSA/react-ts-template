@@ -43,8 +43,8 @@ const ModalExam: React.FC<IProps> = ({
         {({ values, errors, handleChange, handleSubmit }) => (
           <Container>
             <Input
-              placeholder={i18n.t('COMMON.EXAM_NAME_KEY')}
-              label={i18n.t('COMMON.EXAM_NAME_KEY')}
+              placeholder={i18n.t('EXAM.EXAM_NAME_KEY')}
+              label={i18n.t('EXAM.EXAM_NAME_KEY')}
               name="name"
               value={values.name}
               onChange={handleChange}
