@@ -1,9 +1,15 @@
 import React from 'react';
 import i18n from 'i18n';
 import Button from 'components/Button';
+import { connect } from 'react-redux';
+import { examHandleModal } from 'modules/exam/actions';
 import { Container, DescriptionContainer, ButtonContainer } from './styles';
 
-const Header: React.FC = () => {
+interface IProps {
+  examHandleModal: (data: { modalOpen: boolean }) => void;
+}
+
+const Header: React.FC<IProps> = ({ examHandleModal }) => {
   return (
     <Container>
       <DescriptionContainer>
@@ -11,10 +17,12 @@ const Header: React.FC = () => {
         <p>{i18n.t('DASHBOARD.DESCRIPTION_KEY')}</p>
       </DescriptionContainer>
       <ButtonContainer>
-        <Button>{i18n.t('COMMON.CREATE_EXAM_KEY')}</Button>
+        <Button onClick={() => examHandleModal({ modalOpen: true })}>
+          {i18n.t('COMMON.CREATE_EXAM_KEY')}
+        </Button>
       </ButtonContainer>
     </Container>
   );
 };
 
-export default Header;
+export default connect(null, { examHandleModal })(Header);
