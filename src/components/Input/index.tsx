@@ -12,6 +12,7 @@ interface IProps {
   error?: string;
   value?: string;
   name?: string;
+  inputOnly?: boolean;
 }
 const Input: React.FC<IProps> = ({
   variant = 'contained',
@@ -22,10 +23,11 @@ const Input: React.FC<IProps> = ({
   error,
   value,
   name,
+  inputOnly = false,
 }) => {
   return (
     <Label>
-      <span>{label}</span>
+      {!inputOnly ? <span>{label}</span> : <></>}
       <InputStyled
         placeholder={placeholder}
         variant={variant}
