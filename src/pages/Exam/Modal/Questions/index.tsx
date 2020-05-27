@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Button from 'components/Button';
 import Input from 'components/Input';
 // import i18n from 'i18n';
@@ -16,13 +16,16 @@ interface ISchema {
   name: string;
 }
 
-interface IQuestion {
+export interface IQuestion {
   title: string;
 }
 
-const Questions: React.FC = () => {
-  const [questions, setQuestions] = useState<IQuestion[]>([]);
+interface IProps {
+  questions?: IQuestion[];
+  setQuestions?: any;
+}
 
+const Questions: React.FC<IProps> = ({ questions, setQuestions }) => {
   const questionTypes = useRef([
     {
       title: 'Dissertativa',
@@ -42,7 +45,16 @@ const Questions: React.FC = () => {
   ]);
 
   const addQuestion = () => {
-    setQuestions(prev => [...prev, { title: '' }]);
+    setQuestions(prev => [
+      ...prev,
+      {
+        title: '',
+        type: 'long_text',
+        validations: {
+          required: true,
+        },
+      },
+    ]);
   };
 
   const removeQuestion = index => {

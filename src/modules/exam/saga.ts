@@ -1,6 +1,7 @@
+import { history, retryApi, api } from 'services';
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { all, put, takeLatest, delay, select } from 'redux-saga/effects';
-import { retryApi, api } from 'services';
+
 import {
   examGetAllRequest,
   examGetAllError,
@@ -14,6 +15,9 @@ import {
   examDeleteRequest,
   examDeleteError,
   examDeleteSuccess,
+  examCreateRequest,
+  examCreateSuccess,
+  examCreateError,
 } from './actions';
 
 export function* examGetAllRequestSaga() {
@@ -88,9 +92,27 @@ export function* examDeleteRequestSaga({ payload }) {
   }
 }
 
+export function* examCreateRequestSaga({ payload: { name, questions } }) {
+  try {
+    const {
+      data: { id },
+    } = yield api.post(`/exams`, {
+      title: name,
+      fields: questions,
+    });
+
+    history.push(`/exam/${id}/view`);
+
+    return yield put(examCreateSuccess());
+  } catch (responseWithError) {
+    return yield put(examCreateError());
+  }
+}
+
 export default all([
   takeLatest(examGetAllRequest, examGetAllRequestSaga),
   takeLatest(examGetOneRequest, examGetOneRequestSaga),
   takeLatest(examGetResponseRequest, examGetResponseRequestSaga),
   takeLatest(examDeleteRequest, examDeleteRequestSaga),
+  takeLatest(examCreateRequest, examCreateRequestSaga),
 ]);

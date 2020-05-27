@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import i18n from 'i18n';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
@@ -8,10 +8,11 @@ import Button from 'components/Button';
 import { examHandleModal, examCreateRequest } from 'modules/exam/actions';
 import validationSchema from './validationSchema';
 import { Container, ButtonsContainer, Loading } from './styles';
-import Questions from './Questions';
+import Questions, { IQuestion } from './Questions';
 
 interface ISchema {
   name: string;
+  questions: IQuestion[];
 }
 
 interface IProps {
@@ -31,15 +32,17 @@ const ModalExam: React.FC<IProps> = ({
   examHandleModal,
   examCreateRequest,
 }) => {
+  const [questions, setQuestions] = useState<IQuestion[]>([]);
+
   return (
     <Modal
-      open={true || modalOpen} // FIXME: remove it!
+      open={modalOpen}
       onClose={() => examHandleModal({ modalOpen: false })}
     >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={examCreateRequest}
+        onSubmit={data => examCreateRequest({ ...data, questions })}
       >
         {({ values, errors, handleChange, handleSubmit }) => (
           <Container>
@@ -51,7 +54,8 @@ const ModalExam: React.FC<IProps> = ({
               onChange={handleChange}
               error={errors.name}
             />
-            <Questions />
+
+            <Questions questions={questions} setQuestions={setQuestions} />
 
             <ButtonsContainer>
               <Button onClick={() => examHandleModal({ modalOpen: false })}>
