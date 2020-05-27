@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import palette from 'theme/palette';
+import { transparentize } from 'polished';
 
 interface IQuestion {
   number: string;
@@ -28,7 +29,7 @@ export const Question = styled.div<IQuestion>`
   margin-left: 10%;
 
   &:before {
-    content: '1.';
+  content: '${props => props.number || `x`}.';
     position: absolute;
     font-size: 22px;
     top: 0.5rem;
@@ -38,5 +39,29 @@ export const Question = styled.div<IQuestion>`
   }
 `;
 
-export const QuestionTypesContainer = styled.div``;
-export const QuestionType = styled.div``;
+export const QuestionTypesContainer = styled.div`
+  display: flex;
+`;
+
+export const QuestionType = styled.div`
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background: ${palette.grayLight};
+  margin: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RemoveQuestion = styled.span`
+  cursor: pointer;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: ${transparentize(0.4, palette.purpleDark)};
+
+  &:hover {
+    color: ${transparentize(0.2, palette.purpleDark)};
+  }
+`;

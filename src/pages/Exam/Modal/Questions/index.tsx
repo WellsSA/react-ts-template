@@ -1,58 +1,98 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import Button from 'components/Button';
+import Input from 'components/Input';
 // import i18n from 'i18n';
 // import { connect } from 'react-redux';
-import Input from 'components/Input';
-import Button from 'components/Button';
-import { Container, Question } from './styles';
+import { BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
+import {
+  Container,
+  Question,
+  QuestionType,
+  QuestionTypesContainer,
+  RemoveQuestion,
+} from './styles';
 
 interface ISchema {
   name: string;
 }
 
-// interface IProps {}
+interface IQuestion {
+  title: string;
+}
 
 const Questions: React.FC = () => {
-  const [questions, setQuestions] = useState([{}]);
+  const [questions, setQuestions] = useState<IQuestion[]>([]);
+
+  const questionTypes = useRef([
+    {
+      title: 'Dissertativa',
+      type: 'long_text',
+      icon: BsReverseLayoutTextSidebarReverse,
+    },
+    {
+      type: 'long_text',
+      title: 'Dissertativa',
+      icon: BsReverseLayoutTextSidebarReverse,
+    },
+    {
+      type: 'long_text',
+      title: 'Dissertativa',
+      icon: BsReverseLayoutTextSidebarReverse,
+    },
+  ]);
 
   const addQuestion = () => {
-    setQuestions(prev => [...prev, {}]);
+    setQuestions(prev => [...prev, { title: '' }]);
   };
 
-  // const removeQuestion = index => {
-  //   setQuestions(prevState => {
-  //     const nextState = [...prevState];
-  //     nextState.splice(index, index + 1);
-  //     return nextState;
-  //   });
-  // };
+  const removeQuestion = index => {
+    setQuestions(prevState => {
+      const nextState = [...prevState];
+      nextState.splice(index, 1);
+      return nextState;
+    });
+  };
+
+  const changeQuestionTitle = (value, index) => {
+    setQuestions(prev => {
+      const arr = [...prev];
+      arr[index] = {
+        ...arr[index],
+        title: value,
+      };
+      return arr;
+    });
+  };
 
   return (
     <Container>
       {questions.length ? (
-        questions.map((question, index) => (
+        questions.map(({ title }, index) => (
           <Question key={`${index + 1}`} number={`${index + 1}`}>
-            {/* <span title="Remove" onClick={() => removeQuestion(index)}>
+            <RemoveQuestion
+              title="Remove"
+              onClick={() => removeQuestion(index)}
+            >
               X
-            </span> */}
+            </RemoveQuestion>
             <>
               <Input
                 placeholder="Título"
                 label="Título"
                 name="questionName"
+                value={title}
+                onChange={e => changeQuestionTitle(e.target.value, index)}
                 // inputOnly
               />
             </>
-            <div>tipos disponíveis</div>
+            <QuestionTypesContainer>
+              {questionTypes.current.map(({ title, icon: Icon }, index) => (
+                <QuestionType key={`${index + 1}`} title={title}>
+                  <Icon />
+                </QuestionType>
+              ))}
+            </QuestionTypesContainer>
           </Question>
-
-          //   <Label>Formato da questão</Label>
-          //   <div style={{ display: 'flex' }}>
-          //     <div
-          //       style={{ width: 100, height: 100, backgroundColor: '#000' }}
-          //     />
-          //   </div>
-          //   {JSON.stringify(question)}
-          // </div>
         ))
       ) : (
         <></>

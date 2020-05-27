@@ -33,7 +33,7 @@ const ModalExam: React.FC<IProps> = ({
 }) => {
   return (
     <Modal
-      open={true || modalOpen}
+      open={true || modalOpen} // FIXME: remove it!
       onClose={() => examHandleModal({ modalOpen: false })}
     >
       <Formik
