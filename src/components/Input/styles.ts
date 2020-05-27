@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import palette from 'theme/palette';
 
+import { darken } from 'polished';
+
 interface IInputStyled {
   variant?: 'contained';
 }
 
 export const InputStyled = styled.input<IInputStyled>`
-  border: 2px solid ${palette.grayLight};
+  border: 2px solid ${darken(0.04, palette.grayLight)};
   border-radius: 4px;
   height: 4rem;
   width: 100%;

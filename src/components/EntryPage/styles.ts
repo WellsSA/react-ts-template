@@ -13,8 +13,9 @@ export const Container = styled.div`
 `;
 
 export const ContainerForm = styled.div`
-  background-color: ${palette.purpleLight};
-  padding: 2rem;
+  background-color: ${palette.white};
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 1px;
+  padding: 4rem 2rem;
   border-radius: 4px;
   width: 100%;
   max-width: 320px;
