@@ -40,6 +40,14 @@ export default {
       DESCRIPTION_KEY: 'Lista de provas criadas',
       NO_EXAMS_CREATED_KEY: 'Você não possui provas criadas',
       EXAM_NAME_KEY: 'Nome da prova',
+      QUESTION: {
+        ADD_QUESTION: 'Adicionar questão',
+        REMOVE_QUESTION: 'Remover questão',
+        QUESTION_TITLE: 'Título',
+        TYPE: {
+          DISSERTATION_TYPE: 'Dissertativa',
+        },
+      },
     },
     EXAM_DETAIL: {
       DESCRIPTION_KEY: 'Detalhes da prova',

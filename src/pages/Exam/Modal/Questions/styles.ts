@@ -6,6 +6,10 @@ interface IQuestion {
   number: string;
 }
 
+interface IQuestionType {
+  checked?: boolean;
+}
+
 export const Container = styled.div`
   padding-top: 2rem;
 `;
@@ -43,7 +47,7 @@ export const QuestionTypesContainer = styled.div`
   display: flex;
 `;
 
-export const QuestionType = styled.div`
+export const QuestionType = styled.div<IQuestionType>`
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -52,6 +56,9 @@ export const QuestionType = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  border-radius: 4px;
+  border: ${props =>
+    props.checked ? `1px solid ${palette.purpleDark}` : 'none'};
 `;
 
 export const RemoveQuestion = styled.span`
