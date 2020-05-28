@@ -16,14 +16,4 @@ export const ACCEPTED_QUESTION_TYPES = [
     type: 'long_text',
     icon: BsReverseLayoutTextSidebarReverse,
   },
-  {
-    title: i18n.t('EXAM.QUESTION.TYPE.DISSERTATION_TYPE'),
-    type: 'long_text2',
-    icon: BsReverseLayoutTextSidebarReverse,
-  },
-  {
-    title: i18n.t('EXAM.QUESTION.TYPE.DISSERTATION_TYPE'),
-    type: 'long_text3',
-    icon: BsReverseLayoutTextSidebarReverse,
-  },
 ];
