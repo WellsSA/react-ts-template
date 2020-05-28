@@ -2,7 +2,7 @@ import React, { useRef, Dispatch, SetStateAction } from 'react';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import i18n from 'i18n';
-import { BsReverseLayoutTextSidebarReverse } from 'react-icons/bs';
+
 import { MdClose } from 'react-icons/md';
 
 import {
@@ -12,6 +12,8 @@ import {
   QuestionTypesContainer,
   RemoveQuestion,
 } from './styles';
+
+import { DEFAULT_QUESTION, ACCEPTED_QUESTION_TYPES } from './questions.data';
 
 export interface IQuestion {
   title: string;
@@ -26,32 +28,8 @@ interface IProps {
   setQuestions?: Dispatch<SetStateAction<IQuestion[]>>;
 }
 
-const DEFAULT_QUESTION = {
-  title: '',
-  type: 'long_text',
-  validations: {
-    required: true,
-  },
-};
-
 const Questions: React.FC<IProps> = ({ questions, setQuestions }) => {
-  const questionTypes = useRef([
-    {
-      title: i18n.t('EXAM.QUESTION.TYPE.DISSERTATION_TYPE'),
-      type: 'long_text',
-      icon: BsReverseLayoutTextSidebarReverse,
-    },
-    {
-      title: i18n.t('EXAM.QUESTION.TYPE.DISSERTATION_TYPE'),
-      type: 'long_text2',
-      icon: BsReverseLayoutTextSidebarReverse,
-    },
-    {
-      title: i18n.t('EXAM.QUESTION.TYPE.DISSERTATION_TYPE'),
-      type: 'long_text3',
-      icon: BsReverseLayoutTextSidebarReverse,
-    },
-  ]);
+  const questionTypes = useRef(ACCEPTED_QUESTION_TYPES);
 
   const addQuestion = () => {
     setQuestions(prev => [...prev, DEFAULT_QUESTION]);
