@@ -96,6 +96,7 @@ export default handleActions(
     [Constants.EXAM_CREATE_SUCCESS]: (state: IInitialState) => ({
       ...state,
       isLoadingCreate: false,
+      modalOpen: false,
     }),
     [Constants.EXAM_CREATE_ERROR]: (state: IInitialState) => ({
       ...state,

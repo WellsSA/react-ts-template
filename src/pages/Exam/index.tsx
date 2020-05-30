@@ -36,7 +36,7 @@ const Exam: React.FC<IProps> = ({
 }) => {
   React.useEffect(() => {
     examGetAllRequest();
-  }, [examGetAllRequest]);
+  }, [examGetAllRequest, page]);
 
   return (
     <>
