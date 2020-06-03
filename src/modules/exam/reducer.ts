@@ -62,10 +62,12 @@ export default handleActions(
       { payload }: Action<IInitialState>,
     ) => {
       const deletedId = payload?.selected?.id || '';
+      const newRows = state.rows.filter(({ id }) => id !== deletedId);
       return {
         ...state,
         isLoading: false,
-        rows: state.rows.filter(({ id }) => id !== deletedId),
+        rows: newRows,
+        page: 1,
       };
     },
     [Constants.EXAM_DELETE_ERROR]: (state: IInitialState) => ({

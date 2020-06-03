@@ -10,6 +10,7 @@ export default {
       USER_NEED_OLD_PASSWORD: 'É obrigatório enviar a antiga senha',
       USER_PASSWORD_DOES_NOT_MATCH: 'A senha atual incorreta',
       JWT_INVALID: 'Sua sessão expirou, realize o login novamente',
+      JWT_MISSING: 'Sua sessão expirou, realize o login novamente',
       EXAM_NOT_EXISTS: 'Prova não encontrada',
       EXAM_USER_FORBIDDEN:
         'Você não possui permissão para efetuar essa operação',

@@ -111,6 +111,7 @@ export function* examCreateRequestSaga({ payload: { name, questions } }) {
 
 export default all([
   takeLatest(examGetAllRequest, examGetAllRequestSaga),
+  takeLatest(examDeleteSuccess, examGetAllRequestSaga),
   takeLatest(examGetOneRequest, examGetOneRequestSaga),
   takeLatest(examGetResponseRequest, examGetResponseRequestSaga),
   takeLatest(examDeleteRequest, examDeleteRequestSaga),
