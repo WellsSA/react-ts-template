@@ -54,21 +54,18 @@ npm start
 
 TODO
 
-
 ## Built With :gem:
 
-* [Typescript](https://www.typescriptlang.org/) - TypeScript is a typed superset of JavaScript that compiles to plain JavaScript
+- [Typescript](https://www.typescriptlang.org/) - TypeScript is a typed superset of JavaScript that compiles to plain JavaScript
 
 ## Contributing :sparkling_heart:
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-
 ## Authors :pencil2:
 
-* **Thierry Santos** - *Initial work* - [Thierry Santos](https://github.com/thierrysantos)
-
-See also the list of [contributors](https://github.com/thierrysantos/sandbox/contributors) who participated in this project.
+- **Thierry Santos** - _Initial work_ - [Thierry Santos](https://github.com/thierrysantos)
+- **Wellington Almeida** - _Contributor_ - [Wellington Almeida](https://github.com/wellssa)
 
 ## License :newspaper:
 
